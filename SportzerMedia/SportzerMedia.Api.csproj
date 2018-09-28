@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Order\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\OrdersController.cs" />
+    <Compile Remove="Controllers\Order\OrderPartnerA.cs" />
+    <Compile Remove="Controllers\Order\OrdersRequestBase.cs" />
+    <Compile Remove="Controllers\Order\OrderPartnerB.cs" />
+    <Compile Remove="Controllers\Order\OrdersRequestPartnerC.cs" />
+    <Compile Remove="Controllers\Order\OrdersRequestPartnerB.cs" />
+    <Compile Remove="Controllers\Order\OrdersPartnerA.cs" />
+    <Compile Remove="Controllers\Order\OrdersPartnerA.cs" />
+    <Compile Remove="Controllers\Order\OrdersRequestBase.cs" />
+    <Compile Remove="Infrastructure\LineItemsJsonConverter.cs" />
+    <Compile Remove="Infrastructure\Converters\LineItemJsonConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SportzerMedia.AppLayer\SportzerMedia.AppLayer.csproj" />
+  </ItemGroup>
+</Project>
