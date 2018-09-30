@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 using SportzerMedia.Api.Infrastructure.Converters;
 using SportzerMedia.AppLayer.Orders;
 
-namespace SportzerMedia
+namespace SportzerMedia.Api
 {
     public class Startup
     {
