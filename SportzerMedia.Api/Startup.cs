@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using SportzerMedia.Api.Infrastructure.Converters;
+using SportzerMedia.Api.Infrastructure.Middleware;
 using SportzerMedia.AppLayer.Orders;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SportzerMedia.Api
 {
@@ -30,6 +25,11 @@ namespace SportzerMedia.Api
                     .AddJsonOptions(options => options.SerializerSettings.Converters.Add(new OrdersJsonConverter()))
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SportzerMedia", Version = "v1" });
+            });
+
             services.AddScoped<IOrdersService, OrdersService>();
         }
 
@@ -44,7 +44,15 @@ namespace SportzerMedia.Api
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseExceptionMiddleware();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SportzerMedia");
+            });
+
             app.UseMvc();
         }
     }
